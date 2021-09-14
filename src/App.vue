@@ -35,7 +35,7 @@ export default {
               const res = await axios.get(
                 `https://api.openweathermap.org/data/2.5/weather?q=${
                   doc.doc.data().city
-                }&appid=${this.APIkey}`
+                }&units=metric&appid=${this.APIkey}`
               );
               const data = res.data;
               firebaseDB
