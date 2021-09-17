@@ -1,6 +1,11 @@
 <template>
-  <div class="city">
-    <i v-if="edit" class="far fa-trash-alt edit" ref="edit"></i>
+  <div @click="goToWeather" class="city">
+    <i
+      v-if="edit"
+      @click="removeCity"
+      class="far fa-trash-alt edit"
+      ref="edit"
+    ></i>
     <span>{{ this.city.city }}</span>
     <div class="weather">
       <span>{{ Math.round(this.city.currentWeather.main.temp) }}&deg;</span>
@@ -27,10 +32,44 @@
 </template>
 
 <script>
+import db from '../firebase/firebaseinit';
 export default {
   name: 'city',
   props: ['city', 'edit'],
   created() {},
+  data() {
+    return {
+      id: null,
+    };
+  },
+  methods: {
+    removeCity() {
+      db.collection('cities')
+        .where('city', '==', `${this.city.city}`)
+        .get()
+        .then((docs) => {
+          docs.forEach((doc) => {
+            this.id = doc.id;
+          });
+        })
+        .then(() => {
+          db.collection('cities')
+            .doc(this.id)
+            .delete();
+        });
+    },
+    goToWeather(e) {
+      let city = this.city.city;
+      if (e.target === this.$refs.edit) {
+        //
+      } else {
+        this.$router.push({
+          name: 'Weather',
+          params: { city },
+        });
+      }
+    },
+  },
 };
 </script>
 
@@ -77,6 +116,9 @@ export default {
       height: 20px;
       width: auto;
     }
+  }
+  .icon {
+    filter: invert(1);
   }
   .video {
     overflow: hidden;

@@ -8,7 +8,9 @@
         placeholder="Search by City Name"
         v-model="city"
         id="city"
+        @keypress.13="addCity"
         autofocus
+        ref="search"
       />
       <button @click="addCity">Add</button>
     </div>
@@ -25,6 +27,9 @@ export default {
     return {
       city: '',
     };
+  },
+  mounted() {
+    this.$nextTick(() => this.$refs.search.focus());
   },
   methods: {
     closeModal(e) {
