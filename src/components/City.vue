@@ -83,7 +83,9 @@ export default {
   min-height: 250px;
   color: #fff;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-
+  &:hover {
+    cursor: cell;
+  }
   .edit {
     border-radius: 0px 15px 0 0;
     border: 10px solid rgb(77, 77, 77);

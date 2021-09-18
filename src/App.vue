@@ -9,11 +9,19 @@
       class="navigation"
       v-on:add-city="toggleModal"
       v-on:edit-city="toggleEdit"
+      :addCityActive="addCityActive"
+      :isDay="isDay"
+      :isNight="isNight"
     />
     <router-view
       v-bind:cities="cities"
       v-bind:edit="edit"
       v-bind:APIkey="APIkey"
+      v-on:is-day="dayTime"
+      v-on:is-night="nightTime"
+      v-on:reset-days="resetDays"
+      :isDay="isDay"
+      :isNight="isNight"
     />
   </div>
 </template>
@@ -32,14 +40,18 @@ export default {
   },
   data() {
     return {
+      isDay: null,
+      isNight: null,
       APIkey: process.env.VUE_APP_APIKEY,
       cities: [],
       modalOpen: null,
       edit: null,
+      addCityActive: null,
     };
   },
   created() {
     this.getCityWeather();
+    this.checkRoute();
   },
   methods: {
     getCityWeather() {
@@ -85,6 +97,27 @@ export default {
     toggleEdit() {
       this.edit = !this.edit;
     },
+    checkRoute() {
+      if (this.$route.name === 'AddCity') {
+        this.addCityActive = true;
+      } else {
+        this.addCityActive = false;
+      }
+    },
+    dayTime() {
+      this.isDay = !this.isDay;
+    },
+    nightTime() {
+      this.isNight = !this.isNight;
+    },
+    resetDays() {
+      this.isDay = this.isNight = false;
+    },
+  },
+  watch: {
+    $route() {
+      this.checkRoute();
+    },
   },
 };
 </script>
@@ -98,6 +131,19 @@ export default {
 }
 i {
   cursor: pointer;
+}
+.day {
+  transition: 500ms ease-all;
+  background-color: rgb(59, 150, 249);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.night {
+  transition: 500ms ease-all;
+  background-color: rgb(20, 42, 95);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 .main {
   position: relative;
