@@ -4,7 +4,13 @@
       <span></span>
     </div>
     <div v-else class="weather" :class="{ day: isDay, night: isNight }">
-      <div class="weather-wrap"></div>
+      <div class="weather-wrap">
+        <CurrentWeather
+          :isDay="isDay"
+          :isNight="isNight"
+          :current-weather="currentWeather"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -12,10 +18,14 @@
 <script>
 import axios from 'axios';
 import db from '../firebase/firebaseinit';
+import CurrentWeather from '../components/CurrentWeather.vue';
 
 export default {
   name: 'weather',
   props: ['APIkey', 'isDay', 'isNight'],
+  components: {
+    CurrentWeather,
+  },
   data() {
     return {
       forecast: null,
