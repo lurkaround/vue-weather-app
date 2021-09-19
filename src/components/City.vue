@@ -84,7 +84,7 @@ export default {
   color: #fff;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   &:hover {
-    cursor: cell;
+    cursor: pointer;
   }
   .edit {
     border-radius: 0px 15px 0 0;

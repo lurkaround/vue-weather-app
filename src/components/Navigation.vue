@@ -13,7 +13,7 @@
     <header v-else class="container" :class="{ day: isDay, night: isNight }">
       <nav>
         <router-link class="router-link" :to="{ name: 'AddCity' }">
-          <i class="fas fa-plus"></i>
+          <i class="fas fa-arrow-left"></i>
         </router-link>
         <span>
           {{ new Date().toLocaleString('en-us', { weekday: 'short' }) }},
