@@ -10,6 +10,7 @@
           :isNight="isNight"
           :current-weather="currentWeather"
         />
+        <HourlyWeather :forecast="forecast" />
       </div>
     </div>
   </div>
@@ -19,12 +20,14 @@
 import axios from 'axios';
 import db from '../firebase/firebaseinit';
 import CurrentWeather from '../components/CurrentWeather.vue';
+import HourlyWeather from '../components/HourlyWeather.vue';
 
 export default {
   name: 'weather',
   props: ['APIkey', 'isDay', 'isNight'],
   components: {
     CurrentWeather,
+    HourlyWeather,
   },
   data() {
     return {
@@ -54,7 +57,9 @@ export default {
                   doc.data().currentWeather.coord.lat
                 }&lon=${
                   doc.data().currentWeather.coord.lon
-                }&exclude=current,minutely,alerts&appid=${this.APIkey}`
+                }&exclude=current,minutely,alerts&units=metric&appid=${
+                  this.APIkey
+                }`
               )
               .then((res) => {
                 this.forecast = res.data;
