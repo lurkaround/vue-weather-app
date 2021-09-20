@@ -36,6 +36,7 @@ img {
   width: auto;
   height: 22px;
   display: block;
+  filter: invert(1);
 }
 
 span {

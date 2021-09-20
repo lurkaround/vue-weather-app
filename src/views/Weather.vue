@@ -11,6 +11,8 @@
           :current-weather="currentWeather"
         />
         <HourlyWeather :forecast="forecast" />
+        <WeeklyForecast :forecast="forecast" />
+        <AdditionalInfo :currentWeather="currentWeather" />
       </div>
     </div>
   </div>
@@ -21,6 +23,8 @@ import axios from 'axios';
 import db from '../firebase/firebaseinit';
 import CurrentWeather from '../components/CurrentWeather.vue';
 import HourlyWeather from '../components/HourlyWeather.vue';
+import WeeklyForecast from '../components/WeeklyForecast.vue';
+import AdditionalInfo from '../components/AdditionalInfo.vue';
 
 export default {
   name: 'weather',
@@ -28,6 +32,8 @@ export default {
   components: {
     CurrentWeather,
     HourlyWeather,
+    WeeklyForecast,
+    AdditionalInfo,
   },
   data() {
     return {
@@ -89,29 +95,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.loading {
-  @keyframes spin {
-    to {
-      transform: rotateZ(360deg);
-    }
-  }
-  display: flex;
-  height: 100%;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-  span {
-    display: block;
-    width: 60px;
-    height: 60px;
-    margin: 0 auto;
-    border: 2px solid rgba(186, 214, 255, 0.425);
-    border-top-color: #142a5f;
-    border-radius: 50%;
-    animation: spin ease 1000ms infinite;
-  }
-}
-
 .weather {
   transition: 500ms ease;
   overflow: scroll;
