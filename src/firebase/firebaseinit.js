@@ -2,7 +2,7 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyBu5NDRWj9dP8BEmyAUHCbuGzYkPueN1ko',
+  apiKey: process.env.VUE_APP_APIKEY_FIREBASE,
   authDomain: 'weatherapp-16fbe.firebaseapp.com',
   projectId: 'weatherapp-16fbe',
   storageBucket: 'weatherapp-16fbe.appspot.com',
