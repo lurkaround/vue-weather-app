@@ -4,7 +4,7 @@
 
 - [General info](#general-info)
 - [Technologies](#technologies)
-- [Setup](#setup)
+- [Setup](#project-setup)
 
 ## General info
 
@@ -22,7 +22,7 @@ Project is created with:
 
 ## Project setup
 
-Create/insert your Firebase and Open Weather Map API keys into a `.env` file in the root directory.
+Set up your Firebase Config. Create/insert your Firebase and Open Weather Map API keys into a `.env` file in the root directory.
 
 ### Install dependencies
 
